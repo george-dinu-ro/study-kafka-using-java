@@ -27,15 +27,29 @@ public class KafkaProducerService {
         return new ProducerRecord<>("products-topic", "laptop", 10);
     }
 
-    public void sendMessageWithoutResponse() {
-        var data = getRecord();
+    public String sendMessageWithoutResponse() {
+        var message = getRecord();
 
         try (var producer = getProducer()) {
-            producer.send(data);
-            log.info("Message successfully sent to topic: {}", data.topic());
+            producer.send(message);
+            return String.format("Message successfully sent to topic: %s", message.topic());
 
         } catch (Exception e) {
-            log.error("Error while sending record to topic: {}", data.topic(), e);
+            log.error("Error while sending message to topic: {}", message.topic(), e);
+            return String.format("Error while sending message to topic: %s", message.topic());
+        }
+    }
+
+    public String sendMessageWithFutureResponse() {
+        var message = getRecord();
+
+        try (var producer = getProducer()) {
+            var response = producer.send(message).get();
+            return String.format("Message successfully sent to topic: %s, partition: %s, offset: %s", response.topic(), response.partition(), response.offset());
+
+        } catch (Exception e) {
+            log.error("Error while sending message to topic: {}", message.topic(), e);
+            return String.format("Error while sending message to topic: %s", message.topic());
         }
     }
 
