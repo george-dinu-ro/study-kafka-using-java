@@ -31,7 +31,7 @@ class KafkaProducerServiceTest {
 
     @Test
     void whenCallSendMessageWithCallbackResponse_thenShouldReturnDynamicSuccessMessage() throws InterruptedException {
-        var callback = new MessageCallback();
+        var callback = new ResponseMessageCallback();
         this.kafkaProducerService.sendMessageWithAsyncResponse(callback);
         var actual = callback.getMessage();
 

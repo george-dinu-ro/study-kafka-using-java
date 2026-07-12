@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 
 @Slf4j
-public class MessageCallback implements Callback {
+public class ResponseMessageCallback implements Callback {
 
     private final CountDownLatch countDownLatch = new CountDownLatch(1);
 
