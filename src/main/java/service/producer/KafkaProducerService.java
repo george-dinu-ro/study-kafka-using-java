@@ -1,6 +1,7 @@
 package service.producer;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -50,6 +51,17 @@ public class KafkaProducerService {
         } catch (Exception e) {
             log.error("Error while sending message to topic: {}", message.topic(), e);
             return String.format("Error while sending message to topic: %s", message.topic());
+        }
+    }
+
+    public void sendMessageWithAsyncResponse(Callback callback) {
+        var message = getRecord();
+
+        try (var producer = getProducer()) {
+            producer.send(message, callback);
+
+        } catch (Exception e) {
+            log.error("Error while sending message to topic: {}", message.topic(), e);
         }
     }
 

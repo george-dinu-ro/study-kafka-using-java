@@ -17,14 +17,23 @@ class KafkaProducerServiceTest {
 
     @Test
     void whenCallSendMessageWithoutResponse_thenShouldReturnStaticSuccessMessage() {
-        var actual = kafkaProducerService.sendMessageWithoutResponse();
+        var actual = this.kafkaProducerService.sendMessageWithoutResponse();
 
         assertEquals("Message successfully sent to topic: products-topic", actual);
     }
 
     @Test
-    void whenCallSendMessageWithoutResponse_thenShouldReturnDynamicSuccessMessage() {
-        var actual = kafkaProducerService.sendMessageWithFutureResponse();
+    void whenCallSendMessageWithFutureResponse_thenShouldReturnDynamicSuccessMessage() {
+        var actual = this.kafkaProducerService.sendMessageWithFutureResponse();
+
+        assertTrue(actual.startsWith("Message successfully sent to topic: products-topic"));
+    }
+
+    @Test
+    void whenCallSendMessageWithCallbackResponse_thenShouldReturnDynamicSuccessMessage() throws InterruptedException {
+        var callback = new MessageCallback();
+        this.kafkaProducerService.sendMessageWithAsyncResponse(callback);
+        var actual = callback.getMessage();
 
         assertTrue(actual.startsWith("Message successfully sent to topic: products-topic"));
     }
