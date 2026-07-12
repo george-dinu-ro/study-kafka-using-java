@@ -1,7 +1,9 @@
-package service.producer;
+package producer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import producer.KafkaProducerService;
+import producer.ResponseMessageCallback;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,14 +21,14 @@ class KafkaProducerServiceTest {
     void whenCallSendMessageWithoutResponse_thenShouldReturnStaticSuccessMessage() {
         var actual = this.kafkaProducerService.sendMessageWithoutResponse();
 
-        assertEquals("Message successfully sent to topic: products-topic", actual);
+        assertEquals("Message successfully sent to topic: product-topic", actual);
     }
 
     @Test
     void whenCallSendMessageWithFutureResponse_thenShouldReturnDynamicSuccessMessage() {
         var actual = this.kafkaProducerService.sendMessageWithFutureResponse();
 
-        assertTrue(actual.startsWith("Message successfully sent to topic: products-topic"));
+        assertTrue(actual.startsWith("Message successfully sent to topic: product-topic"));
     }
 
     @Test
@@ -35,7 +37,7 @@ class KafkaProducerServiceTest {
         this.kafkaProducerService.sendMessageWithAsyncResponse(callback);
         var actual = callback.getMessage();
 
-        assertTrue(actual.startsWith("Message successfully sent to topic: products-topic"));
+        assertTrue(actual.startsWith("Message successfully sent to topic: product-topic"));
     }
 
 }

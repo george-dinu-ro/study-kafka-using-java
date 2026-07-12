@@ -1,4 +1,4 @@
-package service.producer;
+package producer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.Callback;
@@ -25,7 +25,7 @@ public class KafkaProducerService {
     }
 
     private static ProducerRecord<String, Integer> getRecord() {
-        return new ProducerRecord<>("products-topic", "laptop", 10);
+        return new ProducerRecord<>("product-topic", "laptop", 10);
     }
 
     public String sendMessageWithoutResponse() {
