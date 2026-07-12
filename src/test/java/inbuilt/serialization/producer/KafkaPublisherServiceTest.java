@@ -1,6 +1,6 @@
-package producer;
+package inbuilt.serialization.producer;
 
-import message.KafkaProductMessage;
+import inbuilt.serialization.message.KafkaProductMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,14 +29,14 @@ class KafkaPublisherServiceTest {
     void whenCallPublishWithoutResponse_thenShouldReturnStaticSuccessMessage() {
         var actual = this.kafkaPublisherService.publishWithoutResponse(this.message);
 
-        assertEquals(String.format("Message successfully sent to topic: %s", TOPIC), actual);
+        assertEquals("Message successfully sent to topic: %s".formatted(TOPIC), actual);
     }
 
     @Test
     void whenCallPublishWithFutureResponse_thenShouldReturnDynamicSuccessMessage() {
         var actual = this.kafkaPublisherService.publishWithFutureResponse(this.message);
 
-        assertTrue(actual.startsWith(String.format("Message successfully sent to topic: %s", TOPIC)));
+        assertTrue(actual.startsWith("Message successfully sent to topic: %s".formatted(TOPIC)));
     }
 
     @Test
@@ -45,7 +45,7 @@ class KafkaPublisherServiceTest {
         this.kafkaPublisherService.publishWithAsyncResponse(this.message, callback);
         var actual = callback.getMessage();
 
-        assertTrue(actual.startsWith(String.format("Message successfully sent to topic: %s", TOPIC)));
+        assertTrue(actual.startsWith("Message successfully sent to topic: %s".formatted(TOPIC)));
     }
 
 }

@@ -1,9 +1,10 @@
-package consumer;
+package inbuilt.serialization.consumer;
 
-import message.KafkaProductMessage;
+import inbuilt.serialization.consumer.KafkaSubscriberService;
+import inbuilt.serialization.message.KafkaProductMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import producer.KafkaPublisherService;
+import inbuilt.serialization.producer.KafkaPublisherService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

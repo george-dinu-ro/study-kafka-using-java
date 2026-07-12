@@ -1,11 +1,13 @@
-package producer;
+package inbuilt.serialization.producer;
 
 import lombok.extern.slf4j.Slf4j;
-import message.KafkaProductMessage;
+import inbuilt.serialization.message.KafkaProductMessage;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.IntegerSerializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
@@ -61,8 +63,8 @@ public class KafkaPublisherService {
     private static Properties getConfiguration() {
         var props = new Properties();
         props.setProperty("bootstrap.servers", "localhost:9092");
-        props.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.setProperty("value.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
+        props.setProperty("key.serializer", StringSerializer.class.getName());
+        props.setProperty("value.serializer", IntegerSerializer.class.getName());
 
         return props;
     }
