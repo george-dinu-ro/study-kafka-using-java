@@ -3,11 +3,11 @@ package consumer;
 import message.KafkaProductMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import producer.KafkaProducerService;
+import producer.KafkaPublisherService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class KafkaConsumerServiceTest {
+class KafkaSubscriberServiceTest {
 
     private static final String TOPIC = "test-consumer-topic";
 
@@ -15,23 +15,23 @@ class KafkaConsumerServiceTest {
 
     private static final Integer VALUE = 10;
 
-    private KafkaProducerService kafkaProducerService;
+    private KafkaPublisherService kafkaPublisherService;
 
-    private KafkaConsumerService kafkaConsumerService;
+    private KafkaSubscriberService kafkaSubscriberService;
 
     private KafkaProductMessage message;
 
     @BeforeEach
     void beforeEach() {
-        this.kafkaProducerService = new KafkaProducerService();
-        this.kafkaConsumerService = new KafkaConsumerService();
+        this.kafkaPublisherService = new KafkaPublisherService();
+        this.kafkaSubscriberService = new KafkaSubscriberService();
         message = new KafkaProductMessage(TOPIC, KEY, VALUE);
     }
 
     @Test
-    void whenCallGetMessages_thenGetAllMessages() {
-        this.kafkaProducerService.sendMessageWithoutResponse(this.message);
-        var actual = this.kafkaConsumerService.getMessage(TOPIC);
+    void whenCallSubscribe_thenGetAllMessages() {
+        this.kafkaPublisherService.publishWithoutResponse(this.message);
+        var actual = this.kafkaSubscriberService.subscribe(TOPIC);
 
         var currentMessage = actual.iterator().next();
 

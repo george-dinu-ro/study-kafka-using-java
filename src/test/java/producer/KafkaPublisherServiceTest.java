@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class KafkaProducerServiceTest {
+class KafkaPublisherServiceTest {
 
     private static final String TOPIC = "test-producer-topic";
 
@@ -15,26 +15,26 @@ class KafkaProducerServiceTest {
 
     private static final Integer VALUE = 5;
 
-    private KafkaProducerService kafkaProducerService;
+    private KafkaPublisherService kafkaPublisherService;
 
     private KafkaProductMessage message;
 
     @BeforeEach
     void beforeEach() {
-        kafkaProducerService = new KafkaProducerService();
+        kafkaPublisherService = new KafkaPublisherService();
         message = new KafkaProductMessage(TOPIC, KEY, VALUE);
     }
 
     @Test
-    void whenCallSendMessageWithoutResponse_thenShouldReturnStaticSuccessMessage() {
-        var actual = this.kafkaProducerService.sendMessageWithoutResponse(this.message);
+    void whenCallPublishWithoutResponse_thenShouldReturnStaticSuccessMessage() {
+        var actual = this.kafkaPublisherService.publishWithoutResponse(this.message);
 
         assertEquals(String.format("Message successfully sent to topic: %s", TOPIC), actual);
     }
 
     @Test
-    void whenCallSendMessageWithFutureResponse_thenShouldReturnDynamicSuccessMessage() {
-        var actual = this.kafkaProducerService.sendMessageWithFutureResponse(this.message);
+    void whenCallPublishWithFutureResponse_thenShouldReturnDynamicSuccessMessage() {
+        var actual = this.kafkaPublisherService.publishWithFutureResponse(this.message);
 
         assertTrue(actual.startsWith(String.format("Message successfully sent to topic: %s", TOPIC)));
     }
@@ -42,7 +42,7 @@ class KafkaProducerServiceTest {
     @Test
     void whenCallSendMessageWithCallbackResponse_thenShouldReturnDynamicSuccessMessage() throws InterruptedException {
         var callback = new ResponseMessageCallback();
-        this.kafkaProducerService.sendMessageWithAsyncResponse(this.message, callback);
+        this.kafkaPublisherService.publishWithAsyncResponse(this.message, callback);
         var actual = callback.getMessage();
 
         assertTrue(actual.startsWith(String.format("Message successfully sent to topic: %s", TOPIC)));

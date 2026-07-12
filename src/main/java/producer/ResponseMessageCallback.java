@@ -18,11 +18,11 @@ public class ResponseMessageCallback implements Callback {
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         if (Objects.nonNull(exception)) {
             log.error("Error while sending message to topic: {}", metadata.topic());
-            this.message = String.format("Error while sending message to topic: %s", metadata.topic());
+            this.message = "Error while sending message to topic: %s".formatted(metadata.topic());
 
         } else {
             log.info("Message successfully sent to topic: {}, partition: {}, offset: {}", metadata.topic(), metadata.partition(), metadata.offset());
-            this.message = String.format("Message successfully sent to topic: %s, partition: %s, offset: %s", metadata.topic(), metadata.partition(), metadata.offset());
+            this.message = "Message successfully sent to topic: %s, partition: %s, offset: %s".formatted(metadata.topic(), metadata.partition(), metadata.offset());
         }
 
         this.countDownLatch.countDown();
