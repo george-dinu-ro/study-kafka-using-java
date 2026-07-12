@@ -1,6 +1,7 @@
 package producer;
 
 import lombok.extern.slf4j.Slf4j;
+import message.KafkaProductMessage;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -24,12 +25,12 @@ public class KafkaProducerService {
         return new KafkaProducer<>(getConfiguration());
     }
 
-    private static ProducerRecord<String, Integer> getRecord() {
-        return new ProducerRecord<>("product-topic", "laptop", 10);
+    private static ProducerRecord<String, Integer> getRecord(KafkaProductMessage productMessage) {
+        return new ProducerRecord<>(productMessage.topic(), productMessage.key(), productMessage.value());
     }
 
-    public String sendMessageWithoutResponse() {
-        var message = getRecord();
+    public String sendMessageWithoutResponse(KafkaProductMessage productMessage) {
+        var message = getRecord(productMessage);
 
         try (var producer = getProducer()) {
             producer.send(message);
@@ -41,8 +42,8 @@ public class KafkaProducerService {
         }
     }
 
-    public String sendMessageWithFutureResponse() {
-        var message = getRecord();
+    public String sendMessageWithFutureResponse(KafkaProductMessage productMessage) {
+        var message = getRecord(productMessage);
 
         try (var producer = getProducer()) {
             var response = producer.send(message).get();
@@ -54,8 +55,8 @@ public class KafkaProducerService {
         }
     }
 
-    public void sendMessageWithAsyncResponse(Callback callback) {
-        var message = getRecord();
+    public void sendMessageWithAsyncResponse(KafkaProductMessage productMessage, Callback callback) {
+        var message = getRecord(productMessage);
 
         try (var producer = getProducer()) {
             producer.send(message, callback);
