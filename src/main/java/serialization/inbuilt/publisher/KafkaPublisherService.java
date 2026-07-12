@@ -1,7 +1,7 @@
-package inbuilt.serialization.producer;
+package serialization.inbuilt.publisher;
 
 import lombok.extern.slf4j.Slf4j;
-import inbuilt.serialization.message.KafkaProductMessage;
+import serialization.inbuilt.message.KafkaProductMessage;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;

@@ -1,6 +1,6 @@
-package inbuilt.serialization.producer;
+package serialization.inbuilt.publisher;
 
-import inbuilt.serialization.message.KafkaProductMessage;
+import serialization.inbuilt.message.KafkaProductMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

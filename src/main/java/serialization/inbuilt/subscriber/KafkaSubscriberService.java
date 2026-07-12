@@ -1,4 +1,4 @@
-package inbuilt.serialization.consumer;
+package serialization.inbuilt.subscriber;
 
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
