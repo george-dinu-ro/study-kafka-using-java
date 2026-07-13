@@ -12,8 +12,8 @@ import java.util.Properties;
 
 public class CustomOrderPublisherService {
 
-    public RecordMetadata publish(String topic, CustomOrder customOrder) {
-        var kafkaMessage = getMessage(topic, customOrder);
+    public RecordMetadata publish(String topic, String key, CustomOrder customOrder) {
+        var kafkaMessage = getMessage(topic, key, customOrder);
 
         try (var publisher = getPublisher()) {
             return publisher.send(kafkaMessage).get();
@@ -25,8 +25,8 @@ public class CustomOrderPublisherService {
         return null;
     }
 
-    private static ProducerRecord<String, CustomOrder> getMessage(String topic, CustomOrder customOrder) {
-        return new ProducerRecord<>(topic, customOrder);
+    private static ProducerRecord<String, CustomOrder> getMessage(String topic, String key, CustomOrder customOrder) {
+        return new ProducerRecord<>(topic, key, customOrder);
     }
 
     private static Producer<String, CustomOrder> getPublisher() {

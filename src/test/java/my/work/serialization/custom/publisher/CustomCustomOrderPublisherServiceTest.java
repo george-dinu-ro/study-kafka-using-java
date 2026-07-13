@@ -13,7 +13,7 @@ class CustomCustomOrderPublisherServiceTest {
         var order = CustomOrder.builder().customerName("John Doe").product("IPhone").quantity(1).build();
 
         var publisherService = new CustomOrderPublisherService();
-        var metadata = publisherService.publish(topic, order);
+        var metadata = publisherService.publish(topic, order.customerName(), order);
 
         assertEquals(topic, metadata.topic());
     }
