@@ -24,9 +24,9 @@ class OrderSubscriberServiceTest {
 
         assertEquals(topic, firstMessage.topic());
 
-        assertEquals(order, firstMessage.value());
-
         assertNull(firstMessage.key());
+
+        assertEquals(order, firstMessage.value());
     }
 
 }

@@ -1,7 +1,5 @@
 package serialization.inbuilt.subscriber;
 
-import serialization.inbuilt.message.KafkaProductMessage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import serialization.inbuilt.publisher.KafkaPublisherService;
 
@@ -9,35 +7,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KafkaSubscriberServiceTest {
 
-    private static final String TOPIC = "test-publisher-topic-ds";
-
-    private static final String KEY = "laptop";
-
-    private static final Integer VALUE = 10;
-
-    private KafkaPublisherService kafkaPublisherService;
-
-    private KafkaSubscriberService kafkaSubscriberService;
-
-    private KafkaProductMessage message;
-
-    @BeforeEach
-    void beforeEach() {
-        this.kafkaPublisherService = new KafkaPublisherService();
-        this.kafkaSubscriberService = new KafkaSubscriberService();
-        message = new KafkaProductMessage(TOPIC, KEY, VALUE);
-    }
-
     @Test
     void whenCallSubscribe_thenGetAllMessages() {
-        this.kafkaPublisherService.publishWithoutResponse(this.message);
-        var actual = this.kafkaSubscriberService.subscribe(TOPIC);
+        var topic = "test-subscriber-topic-ds";
+        var key = "laptop";
+        var value = 10;
 
-        var currentMessage = actual.iterator().next();
+        var kafkaPublisherService = new KafkaPublisherService();
+        var kafkaSubscriberService = new KafkaSubscriberService();
 
-        assertEquals(1, actual.count());
+        kafkaPublisherService.publishWithoutResponse(topic, key, value);
+        var message = kafkaSubscriberService.subscribe(topic);
 
-        assertEquals(TOPIC, currentMessage.topic());
+        var currentMessage = message.iterator().next();
+
+        assertEquals(topic, currentMessage.topic());
+
+        assertEquals(key, currentMessage.key());
+
+        assertEquals(value, currentMessage.value());
     }
 
 }

@@ -1,6 +1,5 @@
 package serialization.inbuilt.publisher;
 
-import serialization.inbuilt.message.KafkaProductMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KafkaPublisherServiceTest {
 
-    private static final String TOPIC = "test-subscriber-topic-ds";
+    private static final String TOPIC = "test-publisher-topic-ds";
 
     private static final String KEY = "pc";
 
@@ -17,24 +16,21 @@ class KafkaPublisherServiceTest {
 
     private KafkaPublisherService kafkaPublisherService;
 
-    private KafkaProductMessage message;
-
     @BeforeEach
     void beforeEach() {
         kafkaPublisherService = new KafkaPublisherService();
-        message = new KafkaProductMessage(TOPIC, KEY, VALUE);
     }
 
     @Test
     void whenCallPublishWithoutResponse_thenShouldReturnStaticSuccessMessage() {
-        var actual = this.kafkaPublisherService.publishWithoutResponse(this.message);
+        var actual = this.kafkaPublisherService.publishWithoutResponse(TOPIC, KEY, VALUE);
 
         assertEquals("Message successfully sent to topic: %s".formatted(TOPIC), actual);
     }
 
     @Test
     void whenCallPublishWithFutureResponse_thenShouldReturnDynamicSuccessMessage() {
-        var actual = this.kafkaPublisherService.publishWithFutureResponse(this.message);
+        var actual = this.kafkaPublisherService.publishWithFutureResponse(TOPIC, KEY, VALUE);
 
         assertTrue(actual.startsWith("Message successfully sent to topic: %s".formatted(TOPIC)));
     }
@@ -42,7 +38,7 @@ class KafkaPublisherServiceTest {
     @Test
     void whenCallSendMessageWithCallbackResponse_thenShouldReturnDynamicSuccessMessage() throws InterruptedException {
         var callback = new ResponseMessageCallback();
-        this.kafkaPublisherService.publishWithAsyncResponse(this.message, callback);
+        this.kafkaPublisherService.publishWithAsyncResponse(TOPIC, KEY, VALUE, callback);
         var actual = callback.getMessage();
 
         assertTrue(actual.startsWith("Message successfully sent to topic: %s".formatted(TOPIC)));

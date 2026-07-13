@@ -1,7 +1,6 @@
 package serialization.inbuilt.publisher;
 
 import lombok.extern.slf4j.Slf4j;
-import serialization.inbuilt.message.KafkaProductMessage;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -14,8 +13,8 @@ import java.util.Properties;
 @Slf4j
 public class KafkaPublisherService {
 
-    public String publishWithoutResponse(KafkaProductMessage productMessage) {
-        var message = getRecord(productMessage);
+    public String publishWithoutResponse(String topic, String key, Integer value) {
+        var message = getRecord(topic, key, value);
 
         try (var producer = getProducer()) {
             producer.send(message);
@@ -27,22 +26,21 @@ public class KafkaPublisherService {
         }
     }
 
-    public String publishWithFutureResponse(KafkaProductMessage productMessage) {
-        var message = getRecord(productMessage);
+    public String publishWithFutureResponse(String topic, String key, Integer value) {
+        var message = getRecord(topic, key, value);
 
         try (var producer = getProducer()) {
             var response = producer.send(message).get();
             return "Message successfully sent to topic: %s, partition: %s, offset: %s".formatted(response.topic(), response.partition(), response.offset());
 
         } catch (Exception e) {
-            Thread.currentThread().interrupt();
             log.error("Error while sending message to topic: {}", message.topic(), e);
             return "Error while sending message to topic: %s".formatted(message.topic());
         }
     }
 
-    public void publishWithAsyncResponse(KafkaProductMessage productMessage, Callback callback) {
-        var message = getRecord(productMessage);
+    public void publishWithAsyncResponse(String topic, String key, Integer value, Callback callback) {
+        var message = getRecord(topic, key, value);
 
         try (var producer = getProducer()) {
             producer.send(message, callback);
@@ -52,8 +50,8 @@ public class KafkaPublisherService {
         }
     }
 
-    private static ProducerRecord<String, Integer> getRecord(KafkaProductMessage productMessage) {
-        return new ProducerRecord<>(productMessage.topic(), productMessage.key(), productMessage.value());
+    private static ProducerRecord<String, Integer> getRecord(String topic, String key, Integer value) {
+        return new ProducerRecord<>(topic, key, value);
     }
 
     private static Producer<String, Integer> getProducer() {
