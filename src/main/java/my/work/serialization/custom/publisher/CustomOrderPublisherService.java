@@ -6,11 +6,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import my.work.serialization.custom.message.CustomOrder;
-import my.work.serialization.custom.message.serializer.OrderSerializer;
+import my.work.serialization.custom.message.serializer.CustomOrderSerializer;
 
 import java.util.Properties;
 
-public class OrderPublisherService {
+public class CustomOrderPublisherService {
 
     public RecordMetadata publish(String topic, CustomOrder customOrder) {
         var kafkaMessage = getMessage(topic, customOrder);
@@ -37,7 +37,7 @@ public class OrderPublisherService {
         var props = new Properties();
         props.setProperty("bootstrap.servers", "localhost:9092");
         props.setProperty("key.serializer", StringSerializer.class.getName());
-        props.setProperty("value.serializer", OrderSerializer.class.getName());
+        props.setProperty("value.serializer", CustomOrderSerializer.class.getName());
 
         return props;
     }

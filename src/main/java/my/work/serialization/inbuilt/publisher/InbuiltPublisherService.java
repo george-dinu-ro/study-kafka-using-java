@@ -11,7 +11,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import java.util.Properties;
 
 @Slf4j
-public class KafkaPublisherService {
+public class InbuiltPublisherService {
 
     public String publishWithoutResponse(String topic, String key, Integer value) {
         var message = getRecord(topic, key, value);

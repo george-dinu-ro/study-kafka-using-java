@@ -5,14 +5,14 @@ import my.work.serialization.custom.message.CustomOrder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CustomOrderPublisherServiceTest {
+class CustomCustomOrderPublisherServiceTest {
 
     @Test
     void whenCallPublish_thenShouldReturnMetadata() {
         var topic = "test-publisher-topic-cs";
         var order = CustomOrder.builder().customerName("John Doe").product("IPhone").quantity(1).build();
 
-        var publisherService = new OrderPublisherService();
+        var publisherService = new CustomOrderPublisherService();
         var metadata = publisherService.publish(topic, order);
 
         assertEquals(topic, metadata.topic());

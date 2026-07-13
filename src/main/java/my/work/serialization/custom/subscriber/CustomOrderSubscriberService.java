@@ -4,13 +4,13 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import my.work.serialization.custom.message.CustomOrder;
-import my.work.serialization.custom.message.serializer.OrderDeserializer;
+import my.work.serialization.custom.message.serializer.CustomOrderDeserializer;
 
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class OrderSubscriberService {
+public class CustomOrderSubscriberService {
 
     public ConsumerRecords<String, CustomOrder> subscribe(String topic) {
         try (var consumer = getConsumer()) {
@@ -27,7 +27,7 @@ public class OrderSubscriberService {
         var props = new Properties();
         props.setProperty("bootstrap.servers", "localhost:9092");
         props.setProperty("key.deserializer", StringDeserializer.class.getName());
-        props.setProperty("value.deserializer", OrderDeserializer.class.getName());
+        props.setProperty("value.deserializer", CustomOrderDeserializer.class.getName());
         props.setProperty("auto.offset.reset", "earliest");
         props.setProperty("group.id", "product-group-cs");
 

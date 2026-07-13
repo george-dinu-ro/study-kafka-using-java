@@ -1,12 +1,11 @@
 package my.work.serialization.inbuilt.subscriber;
 
-import my.work.serialization.inbuilt.subscriber.KafkaSubscriberService;
 import org.junit.jupiter.api.Test;
-import my.work.serialization.inbuilt.publisher.KafkaPublisherService;
+import my.work.serialization.inbuilt.publisher.InbuiltPublisherService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class KafkaSubscriberServiceTest {
+class InbuiltSubscriberServiceTest {
 
     @Test
     void whenCallSubscribe_thenGetAllMessages() {
@@ -14,8 +13,8 @@ class KafkaSubscriberServiceTest {
         var key = "laptop";
         var value = 10;
 
-        var kafkaPublisherService = new KafkaPublisherService();
-        var kafkaSubscriberService = new KafkaSubscriberService();
+        var kafkaPublisherService = new InbuiltPublisherService();
+        var kafkaSubscriberService = new InbuiltSubscriberService();
 
         kafkaPublisherService.publishWithoutResponse(topic, key, value);
         var message = kafkaSubscriberService.subscribe(topic);

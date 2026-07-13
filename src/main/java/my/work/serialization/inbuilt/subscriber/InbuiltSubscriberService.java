@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class KafkaSubscriberService {
+public class InbuiltSubscriberService {
 
     public ConsumerRecords<String, Integer> subscribe(String topic) {
         try (var consumer = getConsumer()) {

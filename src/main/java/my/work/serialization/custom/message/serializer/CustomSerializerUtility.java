@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import tools.jackson.databind.ObjectMapper;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class SerializerUtility {
+public class CustomSerializerUtility {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
