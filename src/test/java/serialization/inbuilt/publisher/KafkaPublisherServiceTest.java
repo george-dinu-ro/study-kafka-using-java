@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KafkaPublisherServiceTest {
 
-    private static final String TOPIC = "test-producer-topic";
+    private static final String TOPIC = "test-subscriber-topic-ds";
 
     private static final String KEY = "pc";
 
