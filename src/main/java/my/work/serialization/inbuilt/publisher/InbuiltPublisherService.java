@@ -60,7 +60,7 @@ public class InbuiltPublisherService {
 
     private static Properties getConfiguration() {
         var props = new Properties();
-        props.setProperty("bootstrap.servers", "localhost:9092");
+        props.setProperty("bootstrap.servers", "localhost:29092");
         props.setProperty("key.serializer", StringSerializer.class.getName());
         props.setProperty("value.serializer", IntegerSerializer.class.getName());
 

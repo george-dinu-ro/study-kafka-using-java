@@ -25,7 +25,7 @@ public class CustomOrderSubscriberService {
 
     private static Properties getConfiguration() {
         var props = new Properties();
-        props.setProperty("bootstrap.servers", "localhost:9092");
+        props.setProperty("bootstrap.servers", "localhost:29092");
         props.setProperty("key.deserializer", StringDeserializer.class.getName());
         props.setProperty("value.deserializer", CustomOrderDeserializer.class.getName());
         props.setProperty("auto.offset.reset", "earliest");
