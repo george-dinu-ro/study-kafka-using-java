@@ -1,7 +1,8 @@
-package serialization.inbuilt.subscriber;
+package my.work.serialization.inbuilt.subscriber;
 
+import my.work.serialization.inbuilt.subscriber.KafkaSubscriberService;
 import org.junit.jupiter.api.Test;
-import serialization.inbuilt.publisher.KafkaPublisherService;
+import my.work.serialization.inbuilt.publisher.KafkaPublisherService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

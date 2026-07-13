@@ -1,4 +1,4 @@
-package serialization.custom.message;
+package my.work.serialization.custom.message;
 
 import lombok.Builder;
 

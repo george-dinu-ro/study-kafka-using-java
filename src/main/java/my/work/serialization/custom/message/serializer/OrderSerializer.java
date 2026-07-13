@@ -1,7 +1,7 @@
-package serialization.custom.message.serializer;
+package my.work.serialization.custom.message.serializer;
 
 import org.apache.kafka.common.serialization.Serializer;
-import serialization.custom.message.Order;
+import my.work.serialization.custom.message.Order;
 
 public class OrderSerializer implements Serializer<Order> {
 

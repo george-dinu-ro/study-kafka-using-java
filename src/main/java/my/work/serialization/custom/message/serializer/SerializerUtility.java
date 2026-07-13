@@ -1,4 +1,4 @@
-package serialization.custom.message.serializer;
+package my.work.serialization.custom.message.serializer;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

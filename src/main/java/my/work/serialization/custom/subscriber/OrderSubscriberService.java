@@ -1,10 +1,10 @@
-package serialization.custom.subscriber;
+package my.work.serialization.custom.subscriber;
 
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import serialization.custom.message.Order;
-import serialization.custom.message.serializer.OrderDeserializer;
+import my.work.serialization.custom.message.Order;
+import my.work.serialization.custom.message.serializer.OrderDeserializer;
 
 import java.time.Duration;
 import java.util.Collections;

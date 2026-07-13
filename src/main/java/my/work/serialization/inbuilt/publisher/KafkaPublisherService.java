@@ -1,4 +1,4 @@
-package serialization.inbuilt.publisher;
+package my.work.serialization.inbuilt.publisher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.Callback;

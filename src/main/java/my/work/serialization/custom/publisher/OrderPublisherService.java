@@ -1,12 +1,12 @@
-package serialization.custom.publisher;
+package my.work.serialization.custom.publisher;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
-import serialization.custom.message.Order;
-import serialization.custom.message.serializer.OrderSerializer;
+import my.work.serialization.custom.message.Order;
+import my.work.serialization.custom.message.serializer.OrderSerializer;
 
 import java.util.Properties;
 

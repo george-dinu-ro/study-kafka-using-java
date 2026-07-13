@@ -1,8 +1,9 @@
-package serialization.custom.subscriber;
+package my.work.serialization.custom.subscriber;
 
+import my.work.serialization.custom.subscriber.OrderSubscriberService;
 import org.junit.jupiter.api.Test;
-import serialization.custom.message.Order;
-import serialization.custom.publisher.OrderPublisherService;
+import my.work.serialization.custom.message.Order;
+import my.work.serialization.custom.publisher.OrderPublisherService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

@@ -1,5 +1,7 @@
-package serialization.inbuilt.publisher;
+package my.work.serialization.inbuilt.publisher;
 
+import my.work.serialization.inbuilt.publisher.KafkaPublisherService;
+import my.work.serialization.inbuilt.publisher.ResponseMessageCallback;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
