@@ -1,19 +1,18 @@
 package my.work.serialization.custom.subscriber;
 
-import my.work.serialization.custom.subscriber.OrderSubscriberService;
 import org.junit.jupiter.api.Test;
-import my.work.serialization.custom.message.Order;
+import my.work.serialization.custom.message.CustomOrder;
 import my.work.serialization.custom.publisher.OrderPublisherService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class OrderSubscriberServiceTest {
+class CustomOrderSubscriberServiceTest {
 
     @Test
     void whenCallSubscribe_thenGetMessage() {
         var topic = "test-subscriber-topic-cs";
-        var order = Order.builder().customerName("John Doe").product("IPhone").quantity(1).build();
+        var order = CustomOrder.builder().customerName("John Doe").product("IPhone").quantity(1).build();
 
         var publisherService = new OrderPublisherService();
         var subscriberService = new OrderSubscriberService();

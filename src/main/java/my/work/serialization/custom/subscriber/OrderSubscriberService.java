@@ -3,7 +3,7 @@ package my.work.serialization.custom.subscriber;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import my.work.serialization.custom.message.Order;
+import my.work.serialization.custom.message.CustomOrder;
 import my.work.serialization.custom.message.serializer.OrderDeserializer;
 
 import java.time.Duration;
@@ -12,14 +12,14 @@ import java.util.Properties;
 
 public class OrderSubscriberService {
 
-    public ConsumerRecords<String, Order> subscribe(String topic) {
+    public ConsumerRecords<String, CustomOrder> subscribe(String topic) {
         try (var consumer = getConsumer()) {
             consumer.subscribe(Collections.singletonList(topic));
             return consumer.poll(Duration.ofSeconds(5));
         }
     }
 
-    private static KafkaConsumer<String, Order> getConsumer() {
+    private static KafkaConsumer<String, CustomOrder> getConsumer() {
         return new KafkaConsumer<>(getConfiguration());
     }
 

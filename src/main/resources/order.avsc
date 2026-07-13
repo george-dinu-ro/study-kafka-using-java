@@ -1,7 +1,7 @@
 {
   "namespace": "my.work.serialization.avro.message",
   "type": "record",
-  "name": "Order",
+  "name": "AvroOrder",
   "fields": [
     {
       "name": "customerName",
