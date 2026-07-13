@@ -1,20 +1,20 @@
 package my.work.serialization.avro.specific.subscriber;
 
-import my.work.serialization.avro.message.AvroOrder;
-import my.work.serialization.avro.specific.publisher.AvroOrderPublisherService;
+import my.work.serialization.avro.specific.message.AvroOrder;
+import my.work.serialization.avro.specific.publisher.AvroSpecificOrderPublisherService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AvroOrderSubscriberServiceTest {
+class AvroSpecificOrderSubscriberServiceTest {
 
     @Test
     void whenCallSubscribe_thenGetMessage() {
-        var topic = "test-subscriber-topic-avro";
+        var topic = "test-subscriber-topic-specific-avro";
         var order = new AvroOrder("John Doe", "IPhone", 1);
 
-        var publisherService = new AvroOrderPublisherService();
-        var subscriberService = new AvroOrderSubscriberService();
+        var publisherService = new AvroSpecificOrderPublisherService();
+        var subscriberService = new AvroSpecificOrderSubscriberService();
 
         publisherService.publish(topic, order.getCustomerName().toString(), order);
 

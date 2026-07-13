@@ -1,7 +1,7 @@
 package my.work.serialization.avro.specific.publisher;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import my.work.serialization.avro.message.AvroOrder;
+import my.work.serialization.avro.specific.message.AvroOrder;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -9,7 +9,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Properties;
 
-public class AvroOrderPublisherService {
+public class AvroSpecificOrderPublisherService {
 
     public RecordMetadata publish(String topic, String key, AvroOrder order) {
         var kafkaMessage = getMessage(topic, key, order);

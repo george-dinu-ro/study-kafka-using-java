@@ -1,5 +1,5 @@
 {
-  "namespace": "my.work.serialization.avro.message",
+  "namespace": "my.work.serialization.avro.specific.message",
   "type": "record",
   "name": "AvroOrder",
   "fields": [
